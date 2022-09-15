@@ -1,8 +1,9 @@
-const administratorMiddleware = (req, res, next) =>{
+const studentMiddleware = (req, res, next) =>{
     const {accountType} = Number(req.session.user)
 
-    if(accountType === 1)
+    if(accountType === 4)
     {
+        
         next();
 
     }
@@ -12,4 +13,4 @@ const administratorMiddleware = (req, res, next) =>{
 }
 
 
-module.exports = administratorMiddleware;
+module.exports = studentMiddleware;

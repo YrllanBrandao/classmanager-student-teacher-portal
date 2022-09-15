@@ -1,6 +1,7 @@
 const User = require("../user")
 const express = require("express");
 const Router = express.Router();
+const middleware  = require("../../middleware/studentMiddleware")
 const Notice = require("../../notice/notice");
 const Assignment = require("../../assignment/assignment");
 const Submission = require("../../submission/submission");
@@ -8,6 +9,7 @@ const ReportCard = require("../../reportcard/reportcard")
 const slugify = require("slugify");
 const path = require("path");
 const multer = require("multer");
+
 const storage = multer.diskStorage({
     destination: (req, file, cb)=>{
         cb(null, './public/submission')
@@ -15,23 +17,23 @@ const storage = multer.diskStorage({
     filename: (req,file, cb)=>{
         cb(null,'submission_'+req.body.owner+path.extname(file.originalname))
     }
-})
+});
 
 const upload = multer({storage, limits:{
     fileSize: 524288//5MB
 }})
 
-Router.get("/home/student", (req, res) =>{
+Router.get("/home/student", middleware, (req, res) =>{
 
  
     res.render("student/index",{
         username: req.session.user.username
-    })
+    });
 
 }
 )
 
-Router.get("/home/student/profile", (req,res)=>{
+Router.get("/home/student/profile", middleware,(req,res)=>{
     
     const  user =  req.session.user;
 
@@ -39,10 +41,10 @@ Router.get("/home/student/profile", (req,res)=>{
         username: user.username,
         email: user.email,
         profilePicture: user.profilePicture
-    })
+    });
 })
 
-Router.get("/home/student/classroom_notices", (req,res)=>{
+Router.get("/home/student/classroom_notices",middleware, (req,res)=>{
     const accountType = 3;
     const {username} = req.session.user;
 
@@ -79,7 +81,7 @@ Router.get("/home/student/classroom_notices", (req,res)=>{
 
 //view notice by id
 
-Router.get("/home/student/classroom_notice/:id",(req,res)=>{
+Router.get("/home/student/classroom_notice/:id",middleware,(req,res)=>{
 
     const noticeId = req.params.id;
 
@@ -99,7 +101,7 @@ Router.get("/home/student/classroom_notice/:id",(req,res)=>{
 
 // view  all assignments
 
-Router.get("/home/student/assignments", (req, res)=>{
+Router.get("/home/student/assignments",middleware, (req, res)=>{
 
     const {username, email} =  req.session.user;
 
@@ -127,7 +129,7 @@ Router.get("/home/student/assignments", (req, res)=>{
 
 })
 
-Router.get("/home/student/assignment/:id", (req,res)=>{
+Router.get("/home/student/assignment/:id",middleware, (req,res)=>{
     const {username} = req.session.user;
     const id = req.params.id;
 
@@ -180,7 +182,7 @@ Router.get("/home/student/assignment/:id", (req,res)=>{
 })
 
 
-Router.post("/home/student/assignment/submit", upload.single('submission'),(req,res)=>{
+Router.post("/home/student/assignment/submit",middleware, upload.single('submission'),(req,res)=>{
 
     const {owner, assignmentId, assignmentTitle, comment, ext} =  req.body;
 

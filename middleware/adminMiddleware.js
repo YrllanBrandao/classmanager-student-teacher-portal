@@ -1,7 +1,7 @@
-const teacherMiddleware = (req, res, next) =>{
+const administratorMiddleware = (req, res, next) =>{
     const {accountType} = Number(req.session.user)
 
-    if(accountType === 2)
+    if(accountType === 1)
     {
         
         next();
@@ -13,4 +13,4 @@ const teacherMiddleware = (req, res, next) =>{
 }
 
 
-module.exports = teacherMiddleware;
+module.exports = administratorMiddleware;

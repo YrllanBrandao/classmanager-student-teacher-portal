@@ -1,6 +1,7 @@
 const User = require("../user");
 const express = require("express");
 const Router = express.Router();
+const middleware = require("../../middleware/teachermiddleware")
 const Classroom = require("../../classroom/classroom");
 const Notice = require("../../notice/notice");
 const Assignment = require("../../assignment/assignment");
@@ -26,7 +27,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 
-Router.get("/home/teacher", (req, res) =>{
+Router.get("/home/teacher",middleware, (req, res) =>{
 
  
     res.render("teacher/index",{
@@ -38,7 +39,7 @@ Router.get("/home/teacher", (req, res) =>{
 )
 
 
-Router.get("/home/teacher/write_notice", (req,res)=>{
+Router.get("/home/teacher/write_notice", middleware, (req,res)=>{
     const user = req.session.user;
     Classroom.findAll({
         where:{
@@ -52,7 +53,7 @@ Router.get("/home/teacher/write_notice", (req,res)=>{
     })
 })
 
-Router.post("/home/teacher/save_notice",(req,res)=>{
+Router.post("/home/teacher/save_notice",middleware,(req,res)=>{
 
     const {title,  notice, receiver} = req.body;
     const {email} = req.session.user;
@@ -82,7 +83,7 @@ Router.post("/home/teacher/save_notice",(req,res)=>{
 
 })
 
-Router.post('/home/teacher/assignment/upload', upload.single('formFile') ,(req,res)=>{
+Router.post('/home/teacher/assignment/upload',middleware, upload.single('formFile') ,(req,res)=>{
 
         const {title, assignment, mark, receiver, ext,deadline} = req.body;
         const {email} = req.session.user;
@@ -124,7 +125,7 @@ Router.post('/home/teacher/assignment/upload', upload.single('formFile') ,(req,r
 
 
 //assignments routes
-Router.get("/home/teacher/assignment/new",(req,res)=>{
+Router.get("/home/teacher/assignment/new",middleware,(req,res)=>{
     const {username} = req.session.user;
   
 
@@ -144,7 +145,7 @@ Router.get("/home/teacher/assignment/new",(req,res)=>{
 
 })
 
-Router.get("/home/teacher/assignments", (req,res)=>{
+Router.get("/home/teacher/assignments",middleware, (req,res)=>{
     const  user =  req.session.user;
 
     Assignment.findAll({
@@ -164,7 +165,7 @@ Router.get("/home/teacher/assignments", (req,res)=>{
 
 })
 
-Router.get("/home/teacher/assignment/:id", (req,res)=>{
+Router.get("/home/teacher/assignment/:id",middleware, (req,res)=>{
     const  user =  req.session.user;
     const id = req.params.id;
 
@@ -194,7 +195,7 @@ Router.get("/home/teacher/assignment/:id", (req,res)=>{
 })
 
 //profile routes
-Router.get("/home/teacher/profile", (req,res)=>{
+Router.get("/home/teacher/profile",middleware, (req,res)=>{
     
     const  user =  req.session.user;
 
@@ -206,7 +207,7 @@ Router.get("/home/teacher/profile", (req,res)=>{
 })
 
 //classroom routes
-Router.get("/home/teacher/classrooms",(req,res)=>{
+Router.get("/home/teacher/classrooms",middleware,(req,res)=>{
     const {username} = req.session.user;
 
     Classroom.findAll({
@@ -221,7 +222,7 @@ Router.get("/home/teacher/classrooms",(req,res)=>{
     })
 })
 
-Router.get("/home/teacher/classroom/:id",(req,res)=>{
+Router.get("/home/teacher/classroom/:id",middleware,(req,res)=>{
     const {username} = req.session.user;
     const id = req.params.id;
 

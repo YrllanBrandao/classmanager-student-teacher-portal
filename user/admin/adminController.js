@@ -1,5 +1,5 @@
 const User = require("../user");
-
+const middleware =  require("../../middleware/adminMiddleware")
 const Classroom = require("../../classroom/classroom")
 const express = require("express");
 const Router = express.Router();
@@ -7,7 +7,6 @@ const bcrypt = require("bcrypt");
 const slugify = require("slugify");
 const multer = require("multer");
 const path = require("path");
-const { render } = require("ejs");
 const ReportCard = require("../../reportcard/reportcard");
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -22,7 +21,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 
-Router.get("/home/admin", (req, res) =>{
+Router.get("/home/admin", middleware, (req, res) =>{
 
  
     res.render("admin/index",{
@@ -35,7 +34,7 @@ Router.get("/home/admin", (req, res) =>{
 
 // profile routes
 
-Router.get("/home/admin/profile", (req, res)=>{
+Router.get("/home/admin/profile", middleware, (req, res)=>{
 
     // const {user} = req.session;
     res.render("admin/profile",{
@@ -48,7 +47,7 @@ Router.get("/home/admin/profile", (req, res)=>{
 
 
 // user register users
-Router.get("/home/admin/register_user", (req,res)=>{
+Router.get("/home/admin/register_user", middleware, (req,res)=>{
 
     Classroom.findAll().then(classroom =>{
 
@@ -60,7 +59,7 @@ Router.get("/home/admin/register_user", (req,res)=>{
 
 })
 //save users
-Router.post("/home/admin/register_user/save",upload.single('profilePicture'),(req,res)=>{
+Router.post("/home/admin/register_user/save",middleware,upload.single('profilePicture'),(req,res)=>{
 
     const {name, lastName, username, email, password, accountType, classroom, ext} = req.body;
 
@@ -94,7 +93,7 @@ Router.post("/home/admin/register_user/save",upload.single('profilePicture'),(re
 
 })
 // classroom section
-Router.get("/home/admin/register_classroom", (req,res)=>{
+Router.get("/home/admin/register_classroom",middleware,(req,res)=>{
 
     const accountType = 2
     User.findAll({
@@ -112,7 +111,7 @@ Router.get("/home/admin/register_classroom", (req,res)=>{
 
 // save classroom
 
-Router.post("/home/admin/register_classroom/save", (req,res)=>{
+Router.post("/home/admin/register_classroom/save",middleware, (req,res)=>{
 
    const {title, myteacher} = req.body;
 
@@ -132,7 +131,7 @@ Router.post("/home/admin/register_classroom/save", (req,res)=>{
 })
 
 //list classrooms
-Router.get("/home/admin/classrooms_list", (req,res)=>{
+Router.get("/home/admin/classrooms_list", middleware, (req,res)=>{
 
     Classroom.findAll().then(classroom =>{
 
@@ -145,7 +144,7 @@ Router.get("/home/admin/classrooms_list", (req,res)=>{
  })
 
 //list classroom members
-Router.get("/home/admin/classroom/:title",(req,res)=>{
+Router.get("/home/admin/classroom/:title", middleware,(req,res)=>{
     const title = req.params.title;
     const accountType = 3;
     
@@ -168,7 +167,7 @@ Router.get("/home/admin/classroom/:title",(req,res)=>{
 
 // list users routes
 
-Router.get("/home/admin/teachers_list", (req,res)=>{
+Router.get("/home/admin/teachers_list",middleware, (req,res)=>{
 
     User.findAll({
         where:{
@@ -183,7 +182,7 @@ Router.get("/home/admin/teachers_list", (req,res)=>{
     })
 })
 
-Router.get("/home/admin/students_list", (req,res)=>{
+Router.get("/home/admin/students_list",middleware, (req,res)=>{
 
     User.findAll({
         where:{
@@ -198,7 +197,7 @@ Router.get("/home/admin/students_list", (req,res)=>{
     })
 })
 
-Router.get("/home/admin/administrators_list", (req,res)=>{
+Router.get("/home/admin/administrators_list",middleware, (req,res)=>{
     const accountType = 1;
     User.findAll({
         where:{
