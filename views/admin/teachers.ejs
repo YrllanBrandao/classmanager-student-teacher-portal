@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Class Manager | Teachers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../_css/profile.css">
+</head>
+  <body>
+ 
+  <div class="container-fluid m-0 p-0">
+    <nav class="navbar navbar-dark bg-dark ">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Class manager</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Class manager</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <div class="row  text-white d-flex text-center container-fluid justify-content-center align-items-center p-2">
+              
+              Welcome, ADMINISTRATOR!
+         
+           
+            </div>
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/home/admin">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/home/admin/register_user">Register user</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/home/admin/register_classroom">Register classroom</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/home/admin/administrators_list">Administrators list</a>
+              </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="/home/admin/teachers_list">Teachers list</a>
+                </li>
+                <li class="nav-item">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/home/admin/students_list">Students list</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/home/admin/classrooms_list">Classroooms list</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link  d-flex align-items-center  gap-2" href="/home/admin/profile">Profile</a>
+               
+                <li class="nav-item">
+                  <a class="nav-link  d-flex align-items-center  gap-2" href="/home/admin/change_password">Change password</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link link-danger d-flex align-items-center  gap-2" href="/logout">Logout <iconify-icon icon="ion:exit-outline" style="color: #992A3B;" data-width="25px"></iconify-icon></a>
+                </li>
+            </ul>
+           
+          </div>
+        </div>
+      </div>
+    </nav>
+<!-- content -->
+      <br><br>
+    <div class="container-fluid p-0 m-0 d-flex align-items-center justify-content-center">
+      
+        <div class="card container-md">
+            <div class="card-header text-center"><h1>Teachers list</h1></div>
+            <div class="card-body">
+                <table class="table text-center">
+                    <thead class="table-primary">
+                      <th scope="col">
+                        Name
+                      </th>
+                      <th scope="col">
+                        last name
+                      </th>
+                      <th scope="col">
+                        E-mail
+                      </th>
+                      
+                    </thead>
+                    <tbody>
+                    <%
+                      teachers.forEach(teacher =>{
+                        %>
+                        <tr>
+                          <td><%= teacher.name%></td>
+                          <td><%= teacher.lastName%></td>
+                          <td><%= teacher.email%></td>
+                          
+                        </tr>
+                        <%
+                      })
+                    %>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        
+    </div>
+    
+  </div>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+   <!-- <script src="./_javascript/register.js"></script> -->
+
+   <!-- iconify script -->
+   <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
+</body>
+</html>

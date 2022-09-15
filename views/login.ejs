@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Log in</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="./_css/login.css">
+</head>
+  <body>
+ 
+   <div class="container-fluid  p-0 d-flex align-items-center justify-content-center vh bg-main">
+
+    <form action="/authentication" method="post" class="form-control container-sm d-flex flex-column gap-3 mx-2 p-4 form-register" id="form-register">
+        <div class="form-header d-flex align-items-center flex-column justify-content-center">
+            <div class="profile">
+                
+            </div>
+            <h1>Login</h1>
+
+            
+        </div>
+        
+                
+                  <div class="form-floating mb-12 ">
+                    <input type="email" class="form-control" name="email" id="floatingInput" placeholder="jose" required>
+                    <label for="floatingInput">E-mail</label>
+                    
+                  </div>
+          
+          
+    
+       
+       
+            <div class="col-md-12">
+                <div class="form-floating mb-12">
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                    <label for="floatingPassword">Password</label>
+                  </div>
+            </div>
+           
+            
+
+          <div class="row align-items-center justify-content-center">
+            
+                <button type="submit" class="btn btn-register col-md-6">
+                    Log in
+                </button>
+            
+          </div>
+    </form>
+
+   </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+   
+</body>
+</html>

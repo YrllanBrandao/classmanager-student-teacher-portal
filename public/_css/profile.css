@@ -1,0 +1,50 @@
+.profile{
+    border-radius: 50%;
+    border: 2px solid #5A41D9;
+    box-sizing: border-box;
+    width: 200px;
+    height: 200px;
+}
+body{
+    background: #b8c1ec;
+}
+input::placeholder, label{
+    color: #2b2c34;
+    font-weight: bold;
+}
+input::placeholder{
+    color: #2b2c34;
+    font-weight: 400;
+}
+.bg-dark, .offcanvas-body, .offcanvas-header{
+    background: #6246ea !important;
+    color: #fffffe;
+}
+.btn-register{
+    background: #6246ea;
+    color: #fffffe;
+}
+.btn-register:hover{
+    background: #5A41D9 !important;
+    color: #2b2c34 !important;
+    
+}
+.btn-login{
+    background: #6246ea ;
+    color: #fffffe !important;
+}
+.btn-login:hover{
+    background: #232946 !important;
+    color: #fffffe;
+    
+}
+h1, table{
+    color: #2b2c34 !important;
+}
+
+@media (min-width: 999px)
+{
+    .container-sm{
+        width: 30%;
+    }
+}

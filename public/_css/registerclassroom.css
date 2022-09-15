@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input, label{
+    color: #232946;
+}
+
+.debug{
+    border: 1px solid red;
+}
+
+
+.form-header{
+    height: 20vh;
+}
+.vh{
+    height: 100vh;
+}
+.bg-main{
+    background: #b8c1ec;
+}
+input::placeholder, label{
+    color: #2b2c34;
+    font-weight: bold;
+}
+input::placeholder{
+    color: #2b2c34;
+    font-weight: 400;
+}
+.bg-dark, .offcanvas-body, .offcanvas-header{
+    background: #6246ea !important;
+    color: #fffffe;
+}
+.btn-register{
+    background: #6246ea;
+    color: #fffffe;
+}
+.btn-register:hover{
+    background: #5A41D9 !important;
+    color: #2b2c34 !important;
+    
+}
+h1{
+    color: #232946;
+    font-size: clamp(1.2em, 1.5em, 1.8em);
+}
+
+.profile{
+    background: url('https://api.iconify.design/arcticons/classroom.svg?color=%23232946') no-repeat center center / cover;
+    /* background-size: cover; */
+    height: 50px;
+    width: 50px;
+}
+
+
+@media (min-width:999px)
+{
+    .form-register{
+        width: 25%;
+    }
+}

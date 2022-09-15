@@ -1,0 +1,41 @@
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog p-4">
+      <div class="modal-content">
+        <form action="/home/student/assignment/submit" method="post" enctype="multipart/form-data">
+            <div class="modal-header ">
+                <h5 class="modal-title" id="staticBackdropLabel">Submit assignment</h5>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body ">
+                <div class="row">
+                    <label for="mytextarea">Comment</label>
+                    <textarea name="comment" id="mytextarea" cols="20" rows="8" class="form-control"></textarea>
+                </div>
+                <br>
+                <div class="row">
+                    <input type="file" name="submission" id="submission" class="form-control" required>
+                    <figure class="d-flex flex-column align-items-end gap-1">
+                        <h6>
+                            accepted formats: .docxs and .pdf
+                        </h6>
+                        <figcaption class="blockquote-footer">
+                         Maximun size: 5MB
+                        </figcaption>
+                      </figure>
+                      <input type="hidden" name="assignmentId" value="<%= assignment.id%>">
+                      <input type="hidden" name="assignmentTitle" value="<%= assignment.title%>">
+                     <input type="hidden" name="ext">
+                      <input type="hidden" name="owner" value="<%= username%>">
+                      
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-login">Submit</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>

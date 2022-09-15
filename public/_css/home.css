@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+:root{
+    --mainColor: #b8c1ec;
+    --defaultText: #fffffe;
+    --headlineText: #232946;
+    --fontDefault: 'Nanum Gothic', sans-serif;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+h1,h2{
+    font-size: clamp(2.2em, 2em, 1.5em);
+    font-weight: bolder;
+}
+body{
+    background: #b8c1ec;
+    font-family: var(--fontDefault) !important;
+}
+.headline-text, .headline-text-2{
+    color: #2b2c34;
+    line-height: 2em;
+    font-weight: 600 !important;
+    letter-spacing: 1px;
+}
+.icon {
+    width: 32px;
+    height: 32px;
+
+    float: left;
+        /*extra fluff*/
+    margin: 10px;
+    border-radius: 5px;
+  }
+.bg-hover{
+    background:#232946;
+    color: #fffffe;
+}
+
+#mytextarea{
+    min-height: 40vh;
+}
+.img-height{
+    height: 50vh;
+
+}
+
+.p-secondary{
+    color: #d1d1e9 !important;
+    
+}
+.card-title{
+    color: #2b2c34;
+    font-weight: bold;
+}
+.card-body{
+    background: #d1d1e9;
+}
+.btn-login{
+    background: #6246ea ;
+    color: #fffffe !important;
+}
+.btn-login:hover{
+    background: #232946 !important;
+    color: #fffffe;
+    
+}
+.navbar-expand-lg{
+    
+    background: none;
+}
+.navbar-expand-lg  a{
+    color: var(--defaultText);
+}
+
+.debug{
+    border:2px solid red;
+}
+
+.default-text{
+    color: var(--defaultText);
+    text-decoration:none;
+}
+.custom-tooltip {
+    --bs-tooltip-bg: #2b2c34;
+  }
+
+.vh{
+    height: 100vh;
+}
+.vh-50{
+    height: 50vh;
+}
+.dropdown-menu{
+    background: #b8c1ec;
+}
+
+.bg-main{
+    background: #fffffe;
+}
+.bg-dark, .offcanvas-body, .offcanvas-header{
+    background: #6246ea !important;
+    color: #fffffe;
+}

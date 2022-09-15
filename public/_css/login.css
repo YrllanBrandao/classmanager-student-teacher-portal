@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input::placeholder, label{
+    color: #2b2c34;
+    font-weight: bold;
+}
+
+.debug{
+    border: 1px solid red;
+}
+body{
+    background: #fffffe;
+}
+.form-register{
+    background: #d1d1e9;
+}
+.form-header{
+    height: 20vh;
+}
+.vh{
+    min-height: 100vh;
+}
+.bg-main{
+    background: #fffffe;
+}
+.bg-dark, .offcanvas-body, .offcanvas-header{
+    background: #232946 !important;
+}
+.btn-register{
+    background:#513AC2;
+    color: #fffffe;
+}
+.btn-register:hover{
+    background: #232946 !important;
+    color: #fffffe !important;
+    
+}
+h1{
+    color: #2b2c34;
+    font-size: clamp(1.2em, 1.5em, 1.8em);
+}
+
+.profile{
+    background: url('https://api.iconify.design/healthicons/ui-user-profile-outline.svg?color=%236246ea') no-repeat center center / cover;
+    /* background-size: cover; */
+    height: 50px;
+    width: 50px;
+}
+
+@media (min-width:1024px)
+{
+    .form-register{
+        width: 60%;
+    }
+}
+
+@media (min-width:1100px)
+{
+    .form-register{
+        width: 45%;
+    }
+}
+
+@media (min-width:1100px)
+{
+    .form-register{
+        width: 40%;
+    }
+}
+@media (min-width:1400px)
+{
+    .form-register{
+        width: 25%;
+    }
+}

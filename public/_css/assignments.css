@@ -1,0 +1,63 @@
+
+body{
+    background: #b8c1ec;
+}
+#mytextarea{
+    min-height: 25vh;
+}
+input::placeholder, label{
+    color: #2b2c34;
+    font-weight: bold;
+}
+input::placeholder{
+    color: #2b2c34;
+    font-weight: 400;
+}
+.bg-dark, .offcanvas-body, .offcanvas-header{
+    background: #6246ea !important;
+    color: #fffffe;
+}
+.btn-register{
+    background: #6246ea;
+    color: #fffffe;
+}
+.btn-register:hover{
+    background: #5A41D9 !important;
+    color: #2b2c34 !important;
+    
+}
+.btn-login{
+    background: #6246ea ;
+    color: #fffffe !important;
+}
+.btn-login:hover{
+    background: #232946 !important;
+    color: #fffffe;
+    
+}
+
+h1, table{
+    color: #2b2c34 !important;
+}
+
+
+@media (min-width:1024px)
+{
+    .container-sm{
+        width: 60%;
+    }
+}
+
+@media (min-width:1100px)
+{
+    .container-sm{
+        width: 45%;
+    }
+}
+
+@media (min-width:1100px)
+{
+    .container-sm{
+        width: 40%;
+    }
+}
