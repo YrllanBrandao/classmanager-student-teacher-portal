@@ -87,7 +87,8 @@ body{
   }
 
 .vh{
-    height: 100vh;
+    min-height: 100vh;
+
 }
 .vh-50{
     height: 50vh;
@@ -95,11 +96,21 @@ body{
 .dropdown-menu{
     background: #b8c1ec;
 }
-
+.img-desktop{
+    display: none;
+}
 .bg-main{
     background: #fffffe;
 }
 .bg-dark, .offcanvas-body, .offcanvas-header{
     background: #6246ea !important;
     color: #fffffe;
+}
+
+
+@media (min-width: 760px)
+{
+    .img-desktop{
+        display: flex;
+    }
 }
