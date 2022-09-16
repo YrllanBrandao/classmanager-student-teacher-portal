@@ -1,7 +1,9 @@
-const teacherMiddleware = (req, res, next) =>{
-    const {accountType} = Number(req.session.user)
+async function teacherMiddleware(req, res, next){
 
-    if(accountType === 2)
+
+    const {accountType} = await req.session.user;
+    
+    if(accountType == 2)
     {
         
         next();

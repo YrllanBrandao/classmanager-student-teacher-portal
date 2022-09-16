@@ -1,7 +1,9 @@
-const administratorMiddleware = (req, res, next) =>{
-    const {accountType} = Number(req.session.user)
+async function administratorMiddleware(req, res, next){
 
-    if(accountType === 1)
+
+    const {accountType} =  req.session.user;
+    
+    if(accountType == 1)
     {
         
         next();

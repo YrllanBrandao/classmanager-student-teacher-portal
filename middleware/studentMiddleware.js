@@ -1,7 +1,9 @@
-const studentMiddleware = (req, res, next) =>{
-    const {accountType} = Number(req.session.user)
+async function studentMiddleware(req, res, next){
 
-    if(accountType === 4)
+
+    const {accountType} = await req.session.user;
+    
+    if(accountType == 3)
     {
         
         next();

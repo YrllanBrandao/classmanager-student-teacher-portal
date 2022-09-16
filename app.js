@@ -31,6 +31,9 @@ app.use("/", AdminController);
 
 app.get("/", (req,res)=>{
 
+    req.session.user ={
+        accountType: 100
+    }
     res.render("index")
 })
 
