@@ -10,29 +10,29 @@ const multer = require("multer");
 const path = require("path")
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, './public/profile')
+        cb(null, './public/profile')
     },
     filename: function (req, file, cb) {
-     
-      cb(null, "profile_"+req.body.username+ path.extname(file.originalname))
-    }
-  })
 
-const upload = multer({storage: storage});
+        cb(null, "profile_" + req.body.username + path.extname(file.originalname))
+    }
+})
+
+const upload = multer({ storage: storage });
 
 
 // register user
 
 // denied acess 403
 
-Router.get("/forbidden", (req,res)=>{
+Router.get("/forbidden", (req, res) => {
 
     res.render("forbidden")
 })
 
 // logout
 
-Router.get("/logout", (req,res)=>{
+Router.get("/logout", (req, res) => {
 
     req.session.destroy()
 
@@ -40,88 +40,85 @@ Router.get("/logout", (req,res)=>{
 
 })
 //this route does the authentication
-Router.post("/authentication", (req,res)=>{
+Router.post("/authentication", (req, res) => {
 
-    const {email, password} = req.body;
+    const { email, password } = req.body;
     const lowerEmail = email.toLowerCase()
-    
+
 
     User.findOne({
-        where:{
+        where: {
             email: lowerEmail
         }
-    }).then((user) =>{
-        console.log("========AUTH========")
-        if(user !== undefined &&  user !== null)
-        {
-            const correct =  bcrypt.compareSync(password, user.password);
+    }).then((user) => {
 
-            if(correct)
-            {
-             req.session.user ={
-                 username: user.username,
-                 email: user.email,
-                 accountType: user.accountType,
-                 profilePicture: user.profilePictureUrl,
-                 id: user.id
- 
- 
-             }
-             console.log("====LOGGED====")
-             res.redirect("/home")
+        if (user !== undefined && user !== null) {
+            const correct = bcrypt.compareSync(password, user.password);
+
+            if (correct) {
+                req.session.user = {
+                    username: user.username,
+                    email: user.email,
+                    accountType: user.accountType,
+                    profilePicture: user.profilePictureUrl,
+                    id: user.id
+
+
+                }
+                console.log("====LOGGED====")
+                res.redirect("/home")
             }
-            else{
-                res.send("incorrect").redirect("/login")
+            else {
+                res.send("incorrect")
             }
 
         }
-        else{
+        else {
             res.redirect("/login")
         }
 
     });
-    
+
 })
 
 // home - this does redirection by type-based account
 
 
 
-Router.get("/home",  (req, res) =>{
+Router.get("/home", (req, res) => {
 
- 
-      
-    const {accountType} = req.session.user;
+
+
+    const { accountType } = req.session.user;
     const type = Number(accountType);
 
 
 
-    switch(type)
-    {
+    switch (type) {
         case 1://if admin
 
-        res.redirect("/home/admin");
+            res.redirect("/home/admin");
 
-        break;
+            break;
 
         case 2://if teacher
             res.redirect("/home/teacher");
 
-        break;
+            break;
 
         case 3://if student
             res.redirect("/home/student");
 
-        break;
+            break;
     }
 
 
 }
 )
- 
+
 // forbidden acess
 
-Router.get("/forbidden", (req,res)=>{
+Router.get("/forbidden", (req, res) => {
 
     res.render("forbidden")
 })
@@ -131,9 +128,9 @@ Router.get("/forbidden", (req,res)=>{
 
 //Profile Routes
 
-Router.get("/profile", (req,res)=>{
-    const  user =  req.session.user;
-    res.render("./user/profile",{
+Router.get("/profile", (req, res) => {
+    const user = req.session.user;
+    res.render("./user/profile", {
         username: user.username,
         email: user.email,
         profilePicture: user.profilePicture
@@ -142,16 +139,19 @@ Router.get("/profile", (req,res)=>{
 
 //Login route
 
-Router.get("/login", (req, res)=>{
+Router.get("/login", (req, res) => {
 
     res.render("login")
 })
 
 
 //change passwd
-Router.get("/change_password", (req, res)=>{
+Router.get("/change_password", (req, res) => {
+    const { username } = req.session.user;
 
-    res.send("wait ...")
+    res.send('password', {
+        username
+    })
 })
 
 module.exports = Router;

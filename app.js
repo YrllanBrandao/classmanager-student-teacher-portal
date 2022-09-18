@@ -10,13 +10,13 @@ const PORT = 8080;
 
 app.set("view engine", 'ejs');
 app.use(express.static('public'));
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(session({
     secret: process.env.SECRET,
-    cookie: {maxAge: maxAge},
+    cookie: { maxAge: maxAge },
     // resave:false
-    
+
 }))
 //Routes
 const UserController = require("./user/userController");
@@ -29,9 +29,9 @@ app.use("/", StudentController);
 app.use("/", TeacherController);
 app.use("/", AdminController);
 
-app.get("/", (req,res)=>{
+app.get("/", (req, res) => {
 
-    req.session.user ={
+    req.session.user = {
         accountType: 100
     }
     res.render("index")
@@ -39,32 +39,32 @@ app.get("/", (req,res)=>{
 
 
 //download files route 
-app.get("/download/:url",(req, res)=>{
+app.get("/download/:url", (req, res) => {
 
     const url = req.params.url;
     const path = `./public/assignments/${url}`;
-    
+
 
     res.download(path)
 
 })
 
 //download submissions
-app.get("/submission/:url",(req, res)=>{
+app.get("/submission/:url", (req, res) => {
 
     const url = req.params.url;
     const path = `./public/assignments/${url}`;
-    
+
 
     res.download(path)
 
 })
 
-app.get("*", (req, res)=>{
+app.get("*", (req, res) => {
     res.render("notfound")
 })
 
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
     console.log("=====SERVER ON=====")
 })
 

@@ -2,6 +2,9 @@
 body{
     background: #b8c1ec;
 }
+.alert-box{
+    display: none;
+}
 #mytextarea{
     min-height: 25vh;
 }

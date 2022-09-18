@@ -47,7 +47,7 @@ Router.get("/home/admin/profile", middleware, (req, res)=>{
 
 
 // user register users
-Router.get("/home/admin/register_user", middleware, (req,res)=>{
+Router.get("/home/admin/register_user",  (req,res)=>{
 
     Classroom.findAll().then(classroom =>{
 
@@ -59,7 +59,7 @@ Router.get("/home/admin/register_user", middleware, (req,res)=>{
 
 })
 //save users
-Router.post("/home/admin/register_user/save",middleware,upload.single('profilePicture'),(req,res)=>{
+Router.post("/home/admin/register_user/save",upload.single('profilePicture'),(req,res)=>{
 
     const {name, lastName, username, email, password, accountType, classroom, ext} = req.body;
 
@@ -211,4 +211,49 @@ Router.get("/home/admin/administrators_list",middleware, (req,res)=>{
 
     })
 })
+
+//change passwd
+Router.get("/home/admin/change_password", (req, res)=>{
+    const {username,email} = req.session.user;
+
+    User.findOne({
+        username,
+        email
+    }).then(user =>{
+
+        res.render('admin/password',{
+            username: "--",
+            password: user.password
+        })
+    })
+})
+
+Router.post("/home/admin/change_password", (req, res)=>{
+    const {username,email} = req.session.user;
+    const {newPassword, newPasswordCopy} = req.body;
+
+    const salt = bcrypt.genSaltSync(10);
+    const passwordHashed = bcrypt.hashSync(newPassword,salt)
+
+    if(newPassword === newPasswordCopy)
+    {
+        User.update({
+            password: passwordHashed
+        },{
+            where:{
+                username,
+                email
+            }
+        }).then(user =>{
+
+            res.redirect("/home/admin/")
+        })
+    }
+    else{
+        res.send("the passwords don't math!")
+    }
+
+    
+})
+
 module.exports = Router;
