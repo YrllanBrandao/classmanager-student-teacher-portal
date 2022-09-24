@@ -1,4 +1,7 @@
 # classmanager
+<div align="center" style='opacity:0'>
+  <img src="https://profile-counter.glitch.me/yrllanbrandao/count.svg?"  />
+</div>
 A Student-Teacher Portal built using HTML, CSS, Javascript and Node.js
 
 Class Manager is a Student-Teacher Portal where techers and student can sign up and teachers can add students in their class.
